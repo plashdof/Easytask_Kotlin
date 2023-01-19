@@ -6,6 +6,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFFFF</color> #6C737C
+
     <color name="easy_skyblue">#4886EB</color>
+    <color name="easy_dark">#313441</color>
+    <color name="easy_light">#EFF1F3</color>
+    <color name="easy_login_dark">#6C737C</color>
+    <color name="easy_login_light">#D3D7DC</color>
 </resources>
