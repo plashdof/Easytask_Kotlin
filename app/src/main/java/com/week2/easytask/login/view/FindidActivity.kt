@@ -174,7 +174,11 @@ class FindidActivity : AppCompatActivity() {
 
 
         // 이메일 찾기 버튼 클릭 이벤트 처리
-        // API 통신
+        // -> FindemailAPI 통신
+        // -> code 404 일시 warn 메세지 띄움
+        // -> code 200 일시, FindidSuccessActivity 로 이동
+        // -> 이동시 intent 에 email 담아서 보냄
+        
         binding.btnFind.setOnClickListener {
             val phonenum = "$phone1-$phone2-$phone3"
             FindRetro
@@ -193,7 +197,7 @@ class FindidActivity : AppCompatActivity() {
 
                         }else{
                             Log.d("API결과","${response.body()}")
-                            val intent = Intent(this@FindidActivity,FindSuccessActivity::class.java)
+                            val intent = Intent(this@FindidActivity,FindidSuccessActivity::class.java)
                                 .putExtra("email","${response.body()?.email}")
                             startActivity(intent)
                         }

@@ -147,6 +147,10 @@ class LoginActivity:AppCompatActivity() {
         }
 
         // 로그인버튼 클릭 이벤트처리
+        // -> SigninAPI 통신
+        // -> response code 200 일시 로그인성공. 추후 홈으로 이동
+        // -> response code 401 일시 없는 아이디
+        // -> login btn, 경고문구 디자인 변경
         
         binding.btnLogin.setOnClickListener {
 
@@ -188,8 +192,15 @@ class LoginActivity:AppCompatActivity() {
                 })
         }
 
+        // 아이디 찾기 
         binding.tvFindId.setOnClickListener {
             val intent = Intent(this, FindidActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 비번 찾기
+        binding.tvFindPw.setOnClickListener {
+            val intent = Intent(this,FindpwActivity::class.java)
             startActivity(intent)
         }
 
