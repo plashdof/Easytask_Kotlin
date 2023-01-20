@@ -171,7 +171,7 @@ class LoginActivity:AppCompatActivity() {
                             Log.d("API결과","${response.body()}")
 
                         }else if(response.code() == 401){
-                            // API 통신 후
+                            // API 통신 후  
                             // 버튼색. 버튼글자색 변경
                             // edittext focus 해제
                             // 경고문구 visible 처리
