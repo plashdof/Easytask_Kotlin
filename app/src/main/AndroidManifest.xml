@@ -37,7 +37,8 @@
             android:exported="true"/>
 
         <activity android:name=".login.view.FindpwActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name=".login.view.FindpwSuccessActivity"
             android:exported="true"/>
