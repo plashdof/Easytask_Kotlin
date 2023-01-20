@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/ll_splash.xml" value="0.177" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_btn.xml" value="0.174" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_btn_on.xml" value="0.174" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_et.xml" value="0.177" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_et_focus.xml" value="0.174" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/font/font.xml" value="0.2828125" />
-        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_login.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>
     </option>
   </component>

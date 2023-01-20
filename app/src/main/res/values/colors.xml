@@ -11,6 +11,7 @@
     <color name="easy_skyblue">#4886EB</color>
     <color name="easy_dark">#313441</color>
     <color name="easy_light">#EFF1F3</color>
+    <color name="easy_red">#EB5757</color>
     <color name="easy_login_dark">#6C737C</color>
     <color name="easy_login_light">#D3D7DC</color>
 </resources>

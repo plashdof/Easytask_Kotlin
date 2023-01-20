@@ -5,10 +5,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:clickable="true"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/btn_kakao_login"
@@ -19,60 +21,118 @@
             android:layout_height="wrap_content"
             android:src="@drawable/login_logo" />
 
-        <EditText
-            android:id="@+id/et_id"
-            android:layout_marginTop="30dp"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:fontFamily="@font/ibmmedium"
-            android:textColor="@color/easy_dark"
-            android:paddingLeft="16dp"
-            android:textColorHint="@color/easy_login_light"
-            android:hint="아이디"
-            android:background="@drawable/shape_login_et"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
-        <EditText
-            android:id="@+id/et_pw"
-            android:layout_marginTop="5dp"
+            <EditText
+                android:id="@+id/et_id"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/shape_login_et"
+                android:fontFamily="@font/ibmmedium"
+                android:hint="아이디"
+                android:paddingLeft="16dp"
+                android:textColor="@color/easy_dark"
+                android:textColorHint="@color/easy_login_light"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btn_erase_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_id_icon"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:layout_gravity="end|center_vertical"/>
+
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:fontFamily="@font/ibmmedium"
-            android:textColor="@color/easy_dark"
-            android:textColorHint="@color/easy_login_light"
-            android:paddingLeft="16dp"
-            android:hint="비밀번호"
-            android:background="@drawable/shape_login_et"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/et_Pw"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="textPassword"
+                android:background="@drawable/shape_login_et"
+                android:fontFamily="@font/ibmmedium"
+                android:hint="비밀번호"
+                android:textColorHint="@color/easy_login_light"
+                android:paddingLeft="16dp"
+                android:textColor="@color/easy_dark"
+                android:textSize="16sp"/>
+
+
+            <ImageButton
+                android:id="@+id/btn_show_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_pw_icon"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginRight="20dp"/>
+
+
+        </FrameLayout>
+
+
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageButton
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_idstore"
                 android:layout_width="wrap_content"
-                android:src="@drawable/login_checkoff"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:background="@android:color/transparent"/>
+                android:src="@drawable/login_checkoff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ibmmedium"
                 android:layout_marginLeft="8dp"
+                android:fontFamily="@font/ibmmedium"
                 android:text="아이디 저장"
                 android:textColor="@color/easy_login_dark" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_login_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/easy_red"
+            android:fontFamily="@font/ibmmedium"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            android:layout_marginBottom="8dp"
+            android:text="이메일 또는 비밀번호가 일치하지 않아요"/>
+
         <android.widget.Button
             android:id="@+id/btn_login"
-            android:layout_marginTop="48dp"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:background="@drawable/shape_login_btn"
             android:fontFamily="@font/ibmmedium"
+            android:clickable="false"
             android:text="로그인"
             android:textColor="@color/easy_login_light"
             android:textSize="16sp" />
@@ -82,8 +142,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="34dp"
-            android:layout_marginRight="35dp"
             android:layout_marginTop="27dp"
+            android:layout_marginRight="35dp"
             android:orientation="horizontal">
 
             <TextView
@@ -99,6 +159,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/easy_login_light"
+                android:textSize="18sp"
                 android:text="|" />
 
 
@@ -114,6 +176,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/easy_login_light"
+                android:textSize="18sp"
                 android:layout_weight="1"
                 android:text="|" />
 
@@ -130,10 +194,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="95dp"
-            android:src="@drawable/login_bubble"
-            android:layout_marginBottom="90dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="90dp"
+            android:src="@drawable/login_bubble" />
 
 
     </LinearLayout>
@@ -142,9 +206,9 @@
         android:id="@+id/btn_kakao_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/login_kakao"
