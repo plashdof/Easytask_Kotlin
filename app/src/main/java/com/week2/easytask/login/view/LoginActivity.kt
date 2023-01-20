@@ -1,6 +1,7 @@
 package com.week2.easytask.login.view
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -182,12 +183,17 @@ class LoginActivity:AppCompatActivity() {
             // edittext focus 해제
             // 경고문구 visible 처리
             
-            binding.tvLoginFail.visibility = View.VISIBLE
+//            binding.tvLoginFail.visibility = View.VISIBLE
+//
+//            binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
+//            binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
 
-            binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
-            binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
 
+        }
 
+        binding.tvFindId.setOnClickListener {
+            val intent = Intent(this, FindidActivity::class.java)
+            startActivity(intent)
         }
 
 
