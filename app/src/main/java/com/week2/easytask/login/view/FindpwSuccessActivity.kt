@@ -32,7 +32,7 @@ class FindpwSuccessActivity : AppCompatActivity() {
         }
         
 
-        // 뒤로가기 버튼 클릭 이벤트 처리
+        // 뒤로가기 버튼 클릭 이벤트 처리  
 
         binding.btnBack.setOnClickListener {
             val intent = Intent(this, FindpwActivity::class.java)
