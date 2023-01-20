@@ -136,18 +136,28 @@ class LoginActivity:AppCompatActivity() {
         }
 
         // 로그인버튼 클릭 이벤트처리
-        // 버튼색. 버튼글자색 변경
-        // edittext focus 해제
-        // 경고문구 visible 처리
+        
         binding.btnLogin.setOnClickListener {
+
+            // API 통신전
+            binding.btnLogin.setTextColor(Color.parseColor("#93C3F8"))
+            binding.etPw.clearFocus()
+            binding.etId.clearFocus()
+            binding.btnLogin.isClickable = false
+
+
+
+            // API 통신 후
+            // 버튼색. 버튼글자색 변경
+            // edittext focus 해제
+            // 경고문구 visible 처리
+            
             binding.tvLoginFail.visibility = View.VISIBLE
 
             binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
             binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-            binding.btnLogin.isClickable = false
 
-            binding.etPw.clearFocus()
-            binding.etId.clearFocus()
+
         }
 
 
