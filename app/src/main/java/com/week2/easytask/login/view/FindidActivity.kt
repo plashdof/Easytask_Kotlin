@@ -194,6 +194,7 @@ class FindidActivity : AppCompatActivity() {
                         }else{
                             Log.d("API결과","${response.body()}")
                             val intent = Intent(this@FindidActivity,FindSuccessActivity::class.java)
+                                .putExtra("email","${response.body()?.email}")
                             startActivity(intent)
                         }
 
