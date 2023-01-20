@@ -15,11 +15,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.ActivityLoginBinding
-import com.week2.easytask.login.model.ResponseData
+import com.week2.easytask.login.model.SigninResponse
 import com.week2.easytask.login.model.SigninData
 import com.week2.easytask.login.network.SigninAPI
 import retrofit2.Call
@@ -161,41 +160,38 @@ class LoginActivity:AppCompatActivity() {
 
             SigninRetro
                 .signin(datas)
-                .enqueue(object : Callback<ResponseData>{
+                .enqueue(object : Callback<SigninResponse>{
                     override fun onResponse(
-                        call: Call<ResponseData>,
-                        response: Response<ResponseData>
+                        call: Call<SigninResponse>,
+                        response: Response<SigninResponse>
                     ) {
-                        Log.d("API결과","${response.body()?.toString()}")
-                        binding.tvLoginFail.text = response.body()?.message.toString()
-                        binding.tvLoginFail.visibility = View.VISIBLE
-                    }
+                        Log.d("API결과","${response.code()}")
 
-                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                        if(response.code() == 200){
+                            Log.d("API결과","${response.body()}")
+
+                        }else if(response.code() == 401){
+                            // API 통신 후
+                            // 버튼색. 버튼글자색 변경
+                            // edittext focus 해제
+                            // 경고문구 visible 처리
+
+                            binding.tvLoginFail.visibility = View.VISIBLE
+                            binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
+                            binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
+                        }
+
+                    }
+                    override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                         Log.d("API결과","${t.message}")
                     }
                 })
-
-
-
-            // API 통신 후
-            // 버튼색. 버튼글자색 변경
-            // edittext focus 해제
-            // 경고문구 visible 처리
-            
-//            binding.tvLoginFail.visibility = View.VISIBLE
-//
-//            binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
-//            binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-
-
         }
 
         binding.tvFindId.setOnClickListener {
             val intent = Intent(this, FindidActivity::class.java)
             startActivity(intent)
         }
-
 
     }
 

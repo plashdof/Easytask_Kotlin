@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.ActivityFindidBinding
-import com.week2.easytask.login.model.ResponseData
+import com.week2.easytask.login.model.FindemailResponse
 import com.week2.easytask.login.network.FindemailAPI
 import retrofit2.Call
 import retrofit2.Callback
@@ -174,23 +174,33 @@ class FindidActivity : AppCompatActivity() {
 
 
         // 이메일 찾기 버튼 클릭 이벤트 처리
-
+        // API 통신
         binding.btnFind.setOnClickListener {
             val phonenum = "$phone1-$phone2-$phone3"
             FindRetro
                 .findemail(name,phonenum)
-                .enqueue(object : Callback<ResponseData>{
+                .enqueue(object : Callback<FindemailResponse>{
                     override fun onResponse(
-                        call: Call<ResponseData>,
-                        response: Response<ResponseData>
+                        call: Call<FindemailResponse>,
+                        response: Response<FindemailResponse>
                     ) {
-                       Log.d("API결과", "${response.raw()}")
+                       Log.d("API결과", "${response.code()}")
 
-                        binding.tvWarn.text = response.body()?.message.toString()
-                        binding.tvWarn.visibility = View.VISIBLE
+                        // 404코드로 오면 회원정보 없음.
+                        if(response.code() == 404){
+                            binding.tvWarn.text = "일치하는 회원 정보가 없어요."
+                            binding.tvWarn.visibility = View.VISIBLE
+
+                        }else{
+                            Log.d("API결과","${response.body()}")
+                            val intent = Intent(this@FindidActivity,FindSuccessActivity::class.java)
+                            startActivity(intent)
+                        }
+
+
                     }
 
-                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {}
+                    override fun onFailure(call: Call<FindemailResponse>, t: Throwable) {}
                 })
 
 

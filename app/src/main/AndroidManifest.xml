@@ -33,6 +33,9 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
 
+        <activity android:name=".login.view.FindSuccessActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
