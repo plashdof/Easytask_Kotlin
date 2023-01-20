@@ -58,6 +58,7 @@ class FindpwSuccessActivity : AppCompatActivity() {
                         response: Response<SendEmailData>
                     ) {
                         if(response.code() == 200){
+                            // 재전송 성공시 Custom TOast message
                             Toast(this@FindpwSuccessActivity).showCustomToast ("이메일을 다시 발송했어요.", this@FindpwSuccessActivity)
                         }else{
 
