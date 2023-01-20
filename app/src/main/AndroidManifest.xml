@@ -43,6 +43,12 @@
         <activity android:name=".login.view.FindpwSuccessActivity"
             android:exported="true"/>
 
+        <activity android:name=".signup.SignupActivity"
+            android:exported="true"/>
+
+        <activity android:name=".signup.SignupCompanyActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
