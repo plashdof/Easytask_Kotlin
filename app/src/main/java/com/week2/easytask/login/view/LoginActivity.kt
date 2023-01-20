@@ -1,24 +1,35 @@
-package com.week2.easytask
+package com.week2.easytask.login.view
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.week2.easytask.R
+import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.ActivityLoginBinding
+import com.week2.easytask.login.model.ResponseData
+import com.week2.easytask.login.model.SigninData
+import com.week2.easytask.login.network.SigninAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity:AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
+    private val SigninRetro = Retrofit.getInstance().create(SigninAPI::class.java)
+
     private var storestate = false
     private var pwstate = false
     private var Id = ""
@@ -144,6 +155,25 @@ class LoginActivity:AppCompatActivity() {
             binding.etPw.clearFocus()
             binding.etId.clearFocus()
             binding.btnLogin.isClickable = false
+
+            val datas = SigninData(username = Id, password = Pw, isKakao = false)
+
+            SigninRetro
+                .signin(datas)
+                .enqueue(object : Callback<ResponseData>{
+                    override fun onResponse(
+                        call: Call<ResponseData>,
+                        response: Response<ResponseData>
+                    ) {
+                        Log.d("API결과","${response.body()?.toString()}")
+                        binding.tvLoginFail.text = response.body()?.message.toString()
+                        binding.tvLoginFail.visibility = View.VISIBLE
+                    }
+
+                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                        Log.d("API결과","${t.message}")
+                    }
+                })
 
 
 

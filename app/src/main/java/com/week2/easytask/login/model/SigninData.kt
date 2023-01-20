@@ -1,0 +1,9 @@
+package com.week2.easytask.login.model
+
+import com.google.gson.annotations.SerializedName
+
+data class SigninData(
+    @SerializedName("username") val username : String,
+    @SerializedName("password") val password : String,
+    @SerializedName("isKakao") val isKakao : Boolean
+)
