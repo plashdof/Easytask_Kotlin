@@ -188,8 +188,15 @@ class LoginActivity:AppCompatActivity() {
                 })
         }
 
+        // 아이디 찾기 
         binding.tvFindId.setOnClickListener {
             val intent = Intent(this, FindidActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 비번 찾기
+        binding.tvFindPw.setOnClickListener {
+            val intent = Intent(this,FindpwActivity::class.java)
             startActivity(intent)
         }
 

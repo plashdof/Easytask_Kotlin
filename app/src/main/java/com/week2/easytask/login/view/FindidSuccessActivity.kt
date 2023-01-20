@@ -3,15 +3,15 @@ package com.week2.easytask.login.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.week2.easytask.databinding.ActivityFindsuccessBinding
+import com.week2.easytask.databinding.ActivityFindidsuccessBinding
 
-class FindSuccessActivity : AppCompatActivity() {
+class FindidSuccessActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityFindsuccessBinding
+    private lateinit var binding : ActivityFindidsuccessBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFindsuccessBinding.inflate(layoutInflater)
+        binding = ActivityFindidsuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if(intent.hasExtra("email")){

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/findid_back"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="16dp"/>
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_announce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/findid_success"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="비밀번호를 재설정할 수 있는\n메일을 발송했어요!"
+            android:textColor="@color/easy_skyblue"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/ibmsemibold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="받은 편지함에서서 메일을 확인해 주세요."
+            android:fontFamily="@font/ibmmedium"
+            android:textSize="16sp"
+            android:textColor="@color/easy_dark"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_announce"
+        app:layout_constraintBottom_toTopOf="@id/btn_againemail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="3분이 지나도 오지 않으면 스팸 메일함을 확인하거나,\n아래 버튼을 눌러 이메일을 다시 보내주세요."
+        android:layout_marginTop="10dp"
+        android:textColor="@color/easy_findid_dark"
+        android:textSize="14sp"
+        android:fontFamily="@font/ibmmedium"/>
+
+
+    <android.widget.Button
+        android:id="@+id/btn_againemail"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@drawable/shape_login_btn_on"
+        android:fontFamily="@font/ibmmedium"
+        android:text="이메일 재전송"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <android.widget.Button
+        android:id="@+id/btn_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/ibmmedium"
+        android:text="로그인 하기"
+        android:textColor="@color/easy_dark"
+        android:textSize="16sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
