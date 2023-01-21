@@ -12,7 +12,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.week2.easytask.R
 import com.week2.easytask.databinding.FragmentSignuppwBinding
-import java.util.regex.Pattern
+import com.week2.easytask.databinding.FragmentSignuptypeBinding
+import com.week2.easytask.signup.SignupSingleton
 
 class SignuppwFragment : Fragment() {
 
@@ -68,10 +69,12 @@ class SignuppwFragment : Fragment() {
             if(pwstate){
                 binding.etPw.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon)
                 pwstate = false
             }else{
                 binding.etPw.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon_on)
                 pwstate = true
             }
         }
@@ -80,10 +83,12 @@ class SignuppwFragment : Fragment() {
             if(pwCheckstate){
                 binding.etPwCheck.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.etPwCheck.setSelection(PwCheck.length)
+                binding.btnShowPwCheck.setImageResource(R.drawable.login_pw_icon)
                 pwCheckstate = false
             }else{
                 binding.etPwCheck.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etPwCheck.setSelection(PwCheck.length)
+                binding.btnShowPwCheck.setImageResource(R.drawable.login_pw_icon_on)
                 pwCheckstate = true
             }
         }
@@ -203,7 +208,11 @@ class SignuppwFragment : Fragment() {
         // -> type 선택 페이지로 이동
 
         binding.btnNext.setOnClickListener {
-            
+            SignupSingleton.pw = Pw
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.frag_signup,SignuptypeFragment())
+                .commit()
         }
 
     }

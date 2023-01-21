@@ -86,10 +86,12 @@ class LoginActivity:AppCompatActivity() {
             if(pwstate){
                 binding.etPw.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon)
                 pwstate = false
             }else{
                 binding.etPw.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon_on)
                 pwstate = true
             }
 

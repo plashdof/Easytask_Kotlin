@@ -88,7 +88,7 @@ class SignupemailFragment : Fragment() {
             binding.etEmail.setText("")
         }
 
-        // email edittext 입력 여부에 따라서, find btn 디자인 변경
+        // email edittext 입력 여부에 따라서, next btn 디자인 변경
 
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
