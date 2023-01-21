@@ -21,6 +21,7 @@ import com.week2.easytask.databinding.ActivityLoginBinding
 import com.week2.easytask.login.model.SigninResponse
 import com.week2.easytask.login.model.SigninData
 import com.week2.easytask.login.network.SigninAPI
+import com.week2.easytask.signup.view.SignupActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -201,6 +202,12 @@ class LoginActivity:AppCompatActivity() {
         // 비번 찾기
         binding.tvFindPw.setOnClickListener {
             val intent = Intent(this,FindpwActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 회원가입 하기
+        binding.tvSignup.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 

@@ -43,11 +43,13 @@
         <activity android:name=".login.view.FindpwSuccessActivity"
             android:exported="true"/>
 
-        <activity android:name=".signup.SignupActivity"
-            android:exported="true"/>
+        <activity android:name=".signup.view.SignupActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".signup.SignupCompanyActivity"
-            android:exported="true"/>
+        <activity android:name=".signup.view.SignupCompanyActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".MainActivity"
