@@ -8,6 +8,7 @@ import com.week2.easytask.databinding.ActivityFindidsuccessBinding
 class FindidSuccessActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityFindidsuccessBinding
+    private var email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,11 +16,13 @@ class FindidSuccessActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if(intent.hasExtra("email")){
-            binding.tvEmail.text = intent.getStringExtra("email")
+            email = intent.getStringExtra("email").toString()
+            binding.tvEmail.text = email
         }
 
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+                .putExtra("email", email)
             startActivity(intent)
         }
     }

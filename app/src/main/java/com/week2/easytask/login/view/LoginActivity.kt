@@ -41,6 +41,13 @@ class LoginActivity:AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Id 찾기 성공후 login page 로 넘어오면, id 입력된상태로 login page 띄움
+
+        if(intent.hasExtra("email")){
+            Id = intent.getStringExtra("email").toString()
+            binding.etId.setText(Id)
+        }
+
         
         // Id/Pw 입력 edittext focus 이벤트 처리
         // 경고문구 invisible 처리

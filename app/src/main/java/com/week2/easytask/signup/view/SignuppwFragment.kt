@@ -197,6 +197,15 @@ class SignuppwFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {}
 
         })
+
+
+        // next btn 클릭 이벤트 처리
+        // -> type 선택 페이지로 이동
+
+        binding.btnNext.setOnClickListener {
+            
+        }
+
     }
     
     // 숫자포함 조건검사 함수
@@ -217,11 +226,14 @@ class SignuppwFragment : Fragment() {
 
     fun findspecial() : Boolean{
 
-        val pwpattern = "^[!@#$%^&+=]*$"
-        val pattern = Pattern.compile(pwpattern)
-        val result = pattern.matcher(Pw)
+        var result = false
 
-        return result.find()
+        for(i in Pw){
+            if(i in "?/~!@#\$%^&*()+=\\"){
+                result = true
+            }
+        }
+        return result
     }
     
 
