@@ -38,7 +38,7 @@ class SignupemailFragment : Fragment() {
     ): View? {
         _binding = FragmentSignupemailBinding.inflate(inflater, container, false)
         return binding.root
-    }
+    }  
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
