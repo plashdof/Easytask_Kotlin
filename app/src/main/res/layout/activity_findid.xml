@@ -149,7 +149,7 @@
         android:layout_height="54dp"
         android:background="@drawable/shape_login_btn"
         android:fontFamily="@font/ibmmedium"
-        android:clickable="false"
+        android:enabled="false"
         android:text="이메일 찾기"
         android:textColor="@color/easy_login_light"
         app:layout_constraintBottom_toBottomOf="parent"

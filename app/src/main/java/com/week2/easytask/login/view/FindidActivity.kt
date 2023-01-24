@@ -103,11 +103,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled= false
                 }
             }
 
@@ -122,11 +122,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 
@@ -141,11 +141,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled= true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 
@@ -160,11 +160,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 

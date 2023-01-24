@@ -45,12 +45,14 @@ class SignupcompleteFragment : Fragment() {
         // -> 통신후 token 저장 & MainActivity 로 이동
         binding.btnStart.setOnClickListener {
 
-            val datas = SignupData(SignupSingleton.aggrementCheck,
+            val datas = SignupData(SignupSingleton.agreementCheck,
                 SignupSingleton.email,
                 false, false,
                 SignupSingleton.marketing,
                 SignupSingleton.pw,
                 SignupSingleton.signupPurpose)
+
+            Log.d("API결과","${datas.toString()}")
 
             SignupRetro
                 .signup(datas)

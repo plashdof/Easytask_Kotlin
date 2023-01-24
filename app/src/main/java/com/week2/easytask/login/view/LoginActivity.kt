@@ -21,6 +21,7 @@ import com.week2.easytask.databinding.ActivityLoginBinding
 import com.week2.easytask.login.model.SigninResponse
 import com.week2.easytask.login.model.SigninData
 import com.week2.easytask.login.network.SigninAPI
+import com.week2.easytask.signup.view.BottomSheetSignup
 import com.week2.easytask.signup.view.SignupActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -109,11 +110,11 @@ class LoginActivity:AppCompatActivity() {
                 if(Id.isNotBlank() && Pw.isNotBlank()){
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnLogin.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnLogin.isClickable = true
+                    binding.btnLogin.isEnabled = true
                 }else{
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnLogin.isClickable = false
+                    binding.btnLogin.isEnabled = false
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -130,11 +131,11 @@ class LoginActivity:AppCompatActivity() {
                 if(Id.isNotBlank() && Pw.isNotBlank()){
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnLogin.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnLogin.isClickable = true
+                    binding.btnLogin.isEnabled= true
                 }else{
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnLogin.isClickable = false
+                    binding.btnLogin.isEnabled = false
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -168,7 +169,7 @@ class LoginActivity:AppCompatActivity() {
             binding.btnLogin.setTextColor(Color.parseColor("#93C3F8"))
             binding.etPw.clearFocus()
             binding.etId.clearFocus()
-            binding.btnLogin.isClickable = false
+            binding.btnLogin.isEnabled = false
 
             val datas = SigninData(username = Id, password = Pw, isKakao = false)
 

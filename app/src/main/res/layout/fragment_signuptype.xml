@@ -122,7 +122,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/shape_login_btn"
-        android:clickable="false"
+        android:enabled="false"
         android:fontFamily="@font/ibmmedium"
         android:text="다음"
         android:textColor="@color/easy_login_light"

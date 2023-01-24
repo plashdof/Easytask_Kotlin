@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/ll_splash.xml" value="0.177" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_bottomsheet.xml" value="0.1905" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_findid_success.xml" value="0.174" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_btn.xml" value="0.174" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/drawable/shape_login_btn_on.xml" value="0.174" />
@@ -19,6 +20,7 @@
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_signup.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/activity_singupcompany.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/bottomsheet_signup.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/fragment_signupcomplete.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/fragment_signupemail.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/SAMSUNG/Desktop/easytask/easytask-android/app/src/main/res/layout/fragment_signuppw.xml" value="0.25364583333333335" />

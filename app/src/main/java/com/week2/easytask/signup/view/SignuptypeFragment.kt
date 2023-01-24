@@ -17,6 +17,7 @@ class SignuptypeFragment : Fragment() {
 
     private var customerstate = false
     private var workerstate =false
+    val bottomSheet = BottomSheetSignup()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,11 +54,11 @@ class SignuptypeFragment : Fragment() {
             if(workerstate || customerstate){
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                 binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                binding.btnNext.isClickable = true
+                binding.btnNext.isEnabled = true
             }else{
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                 binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                binding.btnNext.isClickable = false
+                binding.btnNext.isEnabled = false
             }
         }
 
@@ -82,11 +83,11 @@ class SignuptypeFragment : Fragment() {
             if(workerstate || customerstate){
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                 binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                binding.btnNext.isClickable = true
+                binding.btnNext.isEnabled = true
             }else{
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                 binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                binding.btnNext.isClickable = false
+                binding.btnNext.isEnabled = false
             }
         }
 
@@ -113,7 +114,16 @@ class SignuptypeFragment : Fragment() {
             }else{
                 SignupSingleton.signupPurpose = "3"
             }
+
+            // bottomsheet 등장시키기
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // bottomsheet 에서 다음버튼 누를시, bottomsheet 내리기
+        bottomSheet.dismiss()
     }
 
 

@@ -7,5 +7,5 @@ object SignupSingleton {
     var pw = ""
     var signupPurpose = ""
     var marketing = ""
-    var aggrementCheck = ""
+    var agreementCheck = ""
 }

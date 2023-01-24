@@ -43,6 +43,7 @@ class SignupemailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // back btn 클릭 이벤트 처리
         // -> LoginActivity로 이동
 
@@ -94,14 +95,14 @@ class SignupemailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 email = binding.etEmail.text.toString()
 
-                if(email.isNotBlank()){
+                if(email.contains("@") && email.contains(".com")){
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnNext.isClickable = true
+                    binding.btnNext.isEnabled = true
                 }else{
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnNext.isClickable = false
+                    binding.btnNext.isEnabled = false
                 }
             }
 
@@ -114,6 +115,7 @@ class SignupemailFragment : Fragment() {
         // -> /users/email/{}/exist API 호출
 
         binding.btnNext.setOnClickListener {
+
             ExistemailRetro
                 .existemail(email)
                 .enqueue(object : Callback<ExistEmailResponse> {
@@ -125,12 +127,12 @@ class SignupemailFragment : Fragment() {
 
                         if(response.body()!!.exists){
                             // 이미 존재하는 이메일이면, warn text 띄우기
-                            
+
                             binding.tvWarn.visibility = View.VISIBLE
                         }else{
                             // 회원가입 안된 이메일이면, singleton 에 email 담고, pw frag 로 이동
                             SignupSingleton.email = email
-                            
+
                             parentFragmentManager
                                 .beginTransaction()
                                 .replace(R.id.frag_signup,SignuppwFragment())

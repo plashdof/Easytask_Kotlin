@@ -149,11 +149,11 @@ class SignuppwFragment : Fragment() {
                 if(numcheck && specialcheck && lengthcheck && equalcheck){
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnNext.isClickable = true
+                    binding.btnNext.isEnabled = true
                 }else{
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnNext.isClickable = false
+                    binding.btnNext.isEnabled = false
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -190,11 +190,11 @@ class SignuppwFragment : Fragment() {
                 if(numcheck && specialcheck && lengthcheck && equalcheck){
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnNext.isClickable = true
+                    binding.btnNext.isEnabled = true
                 }else{
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnNext.isClickable = false
+                    binding.btnNext.isEnabled = false
                 }
 
             }
