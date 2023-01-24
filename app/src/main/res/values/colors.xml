@@ -18,4 +18,6 @@
     <color name="easy_login_skyblue">#93C3F8</color>
 
     <color name="easy_findid_dark">#A2A9B0</color>
+
+    <color name="easy_signup_background">#FAFAFB</color>
 </resources>

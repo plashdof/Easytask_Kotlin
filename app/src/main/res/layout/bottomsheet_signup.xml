@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bottomsheet_head"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/ibmsemibold"
+            android:textColor="@color/easy_dark"
+            android:text="가입약관"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/easy_findid_dark"
+            android:fontFamily="@font/ibmmedium"
+            android:text="가입약관을 확인하고 동의해주세요"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_login_et"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_terms1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/signup_checkoff"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:textColor="@color/easy_login_dark"
+                    android:fontFamily="@font/ibmmedium"
+                    android:text="@string/terms1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ibmmedium"
+                    android:textColor="@color/easy_login_dark"
+                    android:text=" 동의"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/easy_skyblue"
+                    android:fontFamily="@font/ibmsemibold"
+                    android:text="필수"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_terms2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/signup_checkoff"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:textColor="@color/easy_login_dark"
+                    android:fontFamily="@font/ibmmedium"
+                    android:text="@string/terms2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ibmmedium"
+                    android:textColor="@color/easy_login_dark"
+                    android:text=" 동의"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/easy_skyblue"
+                    android:fontFamily="@font/ibmsemibold"
+                    android:text="필수"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="23dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_terms3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/signup_checkoff"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:textColor="@color/easy_login_dark"
+                    android:fontFamily="@font/ibmmedium"
+                    android:text="@string/terms3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ibmmedium"
+                    android:textColor="@color/easy_login_dark"
+                    android:text=" 수신 동의"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="23dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_allterms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/signup_checkoff"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:textColor="@color/easy_login_dark"
+                android:fontFamily="@font/ibmmedium"
+                android:textSize="16sp"
+                android:text="이지태스크 가입약관에 모두 동의합니다."/>
+
+
+        </LinearLayout>
+
+
+        <android.widget.Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_login_btn"
+            android:enabled="false"
+            android:fontFamily="@font/ibmmedium"
+            android:text="동의하고 시작하기"
+            android:textColor="@color/easy_login_light"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -103,11 +103,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled= false
                 }
             }
 
@@ -122,11 +122,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 
@@ -141,11 +141,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled= true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 
@@ -160,11 +160,11 @@ class FindidActivity : AppCompatActivity() {
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnFind.isClickable = true
+                    binding.btnFind.isEnabled = true
                 }else{
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnFind.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnFind.isClickable = false
+                    binding.btnFind.isEnabled = false
                 }
             }
 
@@ -212,23 +212,5 @@ class FindidActivity : AppCompatActivity() {
         }
 
 
-    }
-
-    // 다른곳 클릭시 키보드 내리기 & edit text focus 해제
-    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.action === MotionEvent.ACTION_DOWN) {
-            val v = currentFocus
-            if (v is EditText) {
-                val outRect = Rect()
-                v.getGlobalVisibleRect(outRect)
-                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
-                    v.clearFocus()
-                    val imm: InputMethodManager =
-                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
-                }
-            }
-        }
-        return super.dispatchTouchEvent(event)
     }
 }

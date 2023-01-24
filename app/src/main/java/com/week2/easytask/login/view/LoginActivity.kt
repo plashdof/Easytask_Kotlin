@@ -21,6 +21,8 @@ import com.week2.easytask.databinding.ActivityLoginBinding
 import com.week2.easytask.login.model.SigninResponse
 import com.week2.easytask.login.model.SigninData
 import com.week2.easytask.login.network.SigninAPI
+import com.week2.easytask.signup.view.BottomSheetSignup
+import com.week2.easytask.signup.view.SignupActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +41,13 @@ class LoginActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Id 찾기 성공후 login page 로 넘어오면, id 입력된상태로 login page 띄움
+
+        if(intent.hasExtra("email")){
+            Id = intent.getStringExtra("email").toString()
+            binding.etId.setText(Id)
+        }
 
         
         // Id/Pw 입력 edittext focus 이벤트 처리
@@ -78,10 +87,12 @@ class LoginActivity:AppCompatActivity() {
             if(pwstate){
                 binding.etPw.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon)
                 pwstate = false
             }else{
                 binding.etPw.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etPw.setSelection(Pw.length)
+                binding.btnShowPw.setImageResource(R.drawable.login_pw_icon_on)
                 pwstate = true
             }
 
@@ -99,11 +110,11 @@ class LoginActivity:AppCompatActivity() {
                 if(Id.isNotBlank() && Pw.isNotBlank()){
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnLogin.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnLogin.isClickable = true
+                    binding.btnLogin.isEnabled = true
                 }else{
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnLogin.isClickable = false
+                    binding.btnLogin.isEnabled = false
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -120,11 +131,11 @@ class LoginActivity:AppCompatActivity() {
                 if(Id.isNotBlank() && Pw.isNotBlank()){
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnLogin.setTextColor(Color.parseColor("#FFFFFFFF"))
-                    binding.btnLogin.isClickable = true
+                    binding.btnLogin.isEnabled= true
                 }else{
                     binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
-                    binding.btnLogin.isClickable = false
+                    binding.btnLogin.isEnabled = false
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -158,7 +169,7 @@ class LoginActivity:AppCompatActivity() {
             binding.btnLogin.setTextColor(Color.parseColor("#93C3F8"))
             binding.etPw.clearFocus()
             binding.etId.clearFocus()
-            binding.btnLogin.isClickable = false
+            binding.btnLogin.isEnabled = false
 
             val datas = SigninData(username = Id, password = Pw, isKakao = false)
 
@@ -201,6 +212,12 @@ class LoginActivity:AppCompatActivity() {
         // 비번 찾기
         binding.tvFindPw.setOnClickListener {
             val intent = Intent(this,FindpwActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 회원가입 하기
+        binding.tvSignup.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
