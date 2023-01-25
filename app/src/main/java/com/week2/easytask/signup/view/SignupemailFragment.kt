@@ -44,6 +44,11 @@ class SignupemailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         // SignupSingleton 일반모드로
         SignupSingleton.company = false
 
@@ -140,6 +145,7 @@ class SignupemailFragment : Fragment() {
                             parentFragmentManager
                                 .beginTransaction()
                                 .replace(R.id.frag_signup,SignuppwFragment())
+                                .addToBackStack(null)
                                 .commit()
                         }
                     }

@@ -34,6 +34,11 @@ class SignupCompanynameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(requireContext(),LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         // SignupSingleton 회사모드로
         SignupSingleton.company = true
 
@@ -102,6 +107,7 @@ class SignupCompanynameFragment : Fragment() {
             // companynum frag 로 이동
             parentFragmentManager.beginTransaction()
                 .replace(R.id.frag_signup_company, SignupCompanynumFragment())
+                .addToBackStack(null)
                 .commit()
         }
     }

@@ -1,13 +1,16 @@
 package com.week2.easytask.signup.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import com.week2.easytask.R
 import com.week2.easytask.databinding.FragmentSignuptypeBinding
+import com.week2.easytask.login.view.LoginActivity
 import com.week2.easytask.signup.SignupSingleton
 
 class SignuptypeFragment : Fragment() {
@@ -18,6 +21,8 @@ class SignuptypeFragment : Fragment() {
     private var customerstate = false
     private var workerstate =false
     val bottomSheet = BottomSheetSignup()
+
+    private var bottomSheetstate = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +35,12 @@ class SignuptypeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // customer & worker 버튼 클릭 이벤트 toggle 처리
 
@@ -69,7 +80,7 @@ class SignuptypeFragment : Fragment() {
                 workerstate = false
 
             }else{
-                binding.btnWorker.setImageResource(R.drawable.signup_workerbtn)
+                binding.btnWorker.setImageResource(R.drawable.signup_workerbtn_on)
                 workerstate = true
 
                 // customer btn 비활성화
@@ -116,6 +127,7 @@ class SignuptypeFragment : Fragment() {
             }
 
             // bottomsheet 등장시키기
+            bottomSheetstate = true
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
     }
@@ -123,7 +135,9 @@ class SignuptypeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         // bottomsheet 에서 다음버튼 누를시, bottomsheet 내리기
-        bottomSheet.dismiss()
+        if(bottomSheetstate){
+            bottomSheet.dismiss()
+        }
     }
 
 

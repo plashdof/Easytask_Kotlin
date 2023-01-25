@@ -1,5 +1,6 @@
 package com.week2.easytask.signup.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.week2.easytask.R
 import com.week2.easytask.databinding.FragmentSignuppwBinding
 import com.week2.easytask.databinding.FragmentSignuptypeBinding
+import com.week2.easytask.login.view.LoginActivity
 import com.week2.easytask.signup.SignupSingleton
 
 class SignuppwFragment : Fragment() {
@@ -42,6 +44,12 @@ class SignuppwFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Pw/Pwcheck 입력 edittext focus 이벤트 처리
         // -> 테두리 색변경
@@ -216,6 +224,7 @@ class SignuppwFragment : Fragment() {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup_company,SignuptypeFragment())
+                    .addToBackStack(null)
                     .commit()
             }else{
                 
@@ -223,6 +232,7 @@ class SignuppwFragment : Fragment() {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup,SignuptypeFragment())
+                    .addToBackStack(null)
                     .commit()
             }
             

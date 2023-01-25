@@ -199,12 +199,14 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup_company,SignupcompleteFragment())
+                    .addToBackStack(null)
                     .commit()
             }else{
                 // 일반모드일 경우
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup,SignupcompleteFragment())
+                    .addToBackStack(null)
                     .commit()
             }
 

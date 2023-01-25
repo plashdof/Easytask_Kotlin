@@ -9,6 +9,9 @@ object SignupSingleton {
     var companyName = ""
     var companyNum = ""
 
+    var isKakao = false
+    var isApple = false
+
     var email = ""
     var pw = ""
     var signupPurpose = ""

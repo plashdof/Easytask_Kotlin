@@ -1,5 +1,6 @@
 package com.week2.easytask.signup.view.signupcompany
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -8,14 +9,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.week2.easytask.CustomToast.showSignupCompanyToast
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.FragmentSignupcompanyNumBinding
+import com.week2.easytask.login.view.LoginActivity
 import com.week2.easytask.signup.SignupSingleton
 import com.week2.easytask.signup.model.ExistCompanynumResponse
 import com.week2.easytask.signup.network.ExistCompanynumAPI
-import com.week2.easytask.signup.view.SignupemailFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +45,11 @@ class SignupCompanynumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         // 법인등록 번호 입력칸 2개 포커싱 이벤트 처리
 
@@ -120,11 +128,15 @@ class SignupCompanynumFragment : Fragment() {
 
                         // 존재하는 법인번호라면 SignupSinglton 에 데이터저장후 다음페이지로
 
+                        SignupSingleton.companyNum = firstnum + secondnum
+
                         if(response.body()!!.exists){
                             SignupSingleton.companyNum = firstnum + secondnum
 
+                            Toast(requireContext()).showSignupCompanyToast ("이메일을 다시 발송했어요.", requireActivity())
                             parentFragmentManager.beginTransaction()
                                 .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
+                                .addToBackStack(null)
                                 .commit()
                         }else{
                             // 존재하지 않는 법인번호라면 경고문구 띄우기

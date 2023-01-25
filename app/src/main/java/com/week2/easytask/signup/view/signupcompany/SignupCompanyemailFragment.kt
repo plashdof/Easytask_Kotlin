@@ -37,10 +37,6 @@ class SignupCompanyemailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // back btn 클릭 이벤트 처리
-        // -> LoginActivity로 이동
-
         binding.btnBack.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
@@ -99,11 +95,11 @@ class SignupCompanyemailFragment : Fragment() {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.frag_signup_company, SignuppwFragment())
+                .addToBackStack(null)
                 .commit()
         }
 
     }
-
 
 
     override fun onDestroy() {
