@@ -1,34 +1,27 @@
-package com.week2.easytask.signup.view
+package com.week2.easytask.signup.view.signupcompany
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
-import com.week2.easytask.databinding.FragmentSignupemailBinding
+import com.week2.easytask.databinding.FragmentSignupcompanyEmailBinding
 import com.week2.easytask.login.view.LoginActivity
 import com.week2.easytask.signup.SignupSingleton
-import com.week2.easytask.signup.model.ExistEmailResponse
 import com.week2.easytask.signup.network.ExistEmailAPI
-import com.week2.easytask.signup.view.signupcompany.SignupCompanyActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.week2.easytask.signup.view.SignuppwFragment
 
-class SignupemailFragment : Fragment() {
+class SignupCompanyemailFragment : Fragment() {
 
 
-    private var _binding : FragmentSignupemailBinding? = null
+    private var _binding : FragmentSignupcompanyEmailBinding?= null
     private val binding get() = _binding!!
-
-    private val ExistemailRetro = Retrofit.getInstance().create(ExistEmailAPI::class.java)
 
     private var email = ""
 
@@ -37,15 +30,12 @@ class SignupemailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignupemailBinding.inflate(inflater, container, false)
+        _binding = FragmentSignupcompanyEmailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // SignupSingleton 일반모드로
-        SignupSingleton.company = false
 
 
         // back btn 클릭 이벤트 처리
@@ -56,20 +46,6 @@ class SignupemailFragment : Fragment() {
             startActivity(intent)
         }
 
-        // banner ex btn 클릭 이벤트 처리
-        // -> 배너 숨기기
-        binding.btnBannerex.setOnClickListener {
-            binding.layoutBanner.visibility = View.GONE
-        }
-
-        // banner btn 클릭 이벤트 처리
-        // -> signup company activity 로 이동
-        binding.btnMovecompany.setOnClickListener {
-            val intent = Intent(requireContext(), SignupCompanyActivity::class.java)
-            startActivity(intent)
-        }
-
-
         // edittext email 포커싱 이벤트 처리
         // -> 테두리색 변경
         // -> erase btn 보이게 / 안보이게
@@ -78,7 +54,6 @@ class SignupemailFragment : Fragment() {
         binding.etEmail.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 view.setBackgroundResource(R.drawable.shape_login_et_focus)
-                binding.tvWarn.visibility = View.INVISIBLE
                 binding.btnEraseEmail.visibility = View.VISIBLE
             } else {
                 view.setBackgroundResource(R.drawable.shape_login_et)
@@ -116,37 +91,15 @@ class SignupemailFragment : Fragment() {
 
 
         // next btn 클릭 이벤트 처리
-        // -> /users/email/{}/exist API 호출
 
         binding.btnNext.setOnClickListener {
 
-            ExistemailRetro
-                .existemail(email)
-                .enqueue(object : Callback<ExistEmailResponse> {
-                    override fun onResponse(
-                        call: Call<ExistEmailResponse>,
-                        response: Response<ExistEmailResponse>
-                    ) {
-                        Log.d("API결과","${response.body()}")
+            SignupSingleton.email = email
 
-                        if(response.body()!!.exists){
-                            // 이미 존재하는 이메일이면, warn text 띄우기
-
-                            binding.tvWarn.visibility = View.VISIBLE
-                        }else{
-                            // 회원가입 안된 이메일이면, singleton 에 email 담고, pw frag 로 이동
-                            SignupSingleton.email = email
-
-                            parentFragmentManager
-                                .beginTransaction()
-                                .replace(R.id.frag_signup,SignuppwFragment())
-                                .commit()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ExistEmailResponse>, t: Throwable) {}
-                })
-
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.frag_signup_company, SignuppwFragment())
+                .commit()
         }
 
     }

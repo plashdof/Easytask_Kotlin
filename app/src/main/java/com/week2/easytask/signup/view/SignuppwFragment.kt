@@ -209,10 +209,23 @@ class SignuppwFragment : Fragment() {
 
         binding.btnNext.setOnClickListener {
             SignupSingleton.pw = Pw
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.frag_signup,SignuptypeFragment())
-                .commit()
+            
+            
+            // 기업모드일 경우
+            if(SignupSingleton.company){
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frag_signup_company,SignuptypeFragment())
+                    .commit()
+            }else{
+                
+                // 일반모드일 경우
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frag_signup,SignuptypeFragment())
+                    .commit()
+            }
+            
         }
 
     }

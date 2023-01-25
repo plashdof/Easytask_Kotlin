@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.week2.easytask.R
 import com.week2.easytask.databinding.ActivitySignupBinding
+import com.week2.easytask.signup.SignupSingleton
 
 class SignupActivity : AppCompatActivity() {
 

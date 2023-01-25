@@ -194,10 +194,20 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
                 SignupSingleton.marketing = "F"
             }
 
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.frag_signup,SignupcompleteFragment())
-                .commit()
+            // 기업모드일 경우
+            if(SignupSingleton.company){
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frag_signup_company,SignupcompleteFragment())
+                    .commit()
+            }else{
+                // 일반모드일 경우
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frag_signup,SignupcompleteFragment())
+                    .commit()
+            }
+
         }
         
     }
