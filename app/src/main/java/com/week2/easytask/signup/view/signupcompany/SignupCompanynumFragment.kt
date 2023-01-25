@@ -4,19 +4,28 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.week2.easytask.R
+import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.FragmentSignupcompanyNumBinding
 import com.week2.easytask.signup.SignupSingleton
+import com.week2.easytask.signup.model.ExistCompanynumResponse
+import com.week2.easytask.signup.network.ExistCompanynumAPI
 import com.week2.easytask.signup.view.SignupemailFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignupCompanynumFragment : Fragment() {
 
     private var _binding : FragmentSignupcompanyNumBinding? = null
     private val binding get() = _binding!!
+
+    private val ExistCompanynumRetro = Retrofit.getInstance().create(ExistCompanynumAPI::class.java)
 
     private var firstnum = ""
     private var secondnum = ""
@@ -100,13 +109,35 @@ class SignupCompanynumFragment : Fragment() {
 
         binding.btnCheck.setOnClickListener {
 
-            // SignupSingleton 에 companyNum 저장
+            ExistCompanynumRetro
+                .existcompanynum(firstnum + secondnum)
+                .enqueue(object : Callback<ExistCompanynumResponse>{
+                    override fun onResponse(
+                        call: Call<ExistCompanynumResponse>,
+                        response: Response<ExistCompanynumResponse>
+                    ) {
+                        Log.d("API결과", "${response.body()}")
 
-            SignupSingleton.companyNum = firstnum + secondnum
+                        // 존재하는 법인번호라면 SignupSinglton 에 데이터저장후 다음페이지로
 
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
-                .commit()
+                        if(response.body()!!.exists){
+                            SignupSingleton.companyNum = firstnum + secondnum
+
+                            parentFragmentManager.beginTransaction()
+                                .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
+                                .commit()
+                        }else{
+                            // 존재하지 않는 법인번호라면 경고문구 띄우기
+
+                            binding.tvWarn.visibility = View.VISIBLE
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<ExistCompanynumResponse>, t: Throwable) {}
+                })
+
+
         }
     }
 
