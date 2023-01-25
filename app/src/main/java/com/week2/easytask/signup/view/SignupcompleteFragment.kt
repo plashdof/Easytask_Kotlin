@@ -33,7 +33,7 @@ class SignupcompleteFragment : Fragment() {
         SignupSingleton.isKakao,
         SignupSingleton.marketing,
         SignupSingleton.pw,
-        SignupSingleton.signupPurpose) 
+        SignupSingleton.signupPurpose)   
 
     override fun onCreateView(
         inflater: LayoutInflater,
