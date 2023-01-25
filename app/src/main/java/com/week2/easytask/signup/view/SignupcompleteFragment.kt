@@ -26,6 +26,15 @@ class SignupcompleteFragment : Fragment() {
 
     private var SignupRetro = Retrofit.getInstance().create(SignupAPI::class.java)
 
+    // signup singleton 에 담긴 모든 signup 데이터 패키징
+    val datas = SignupData(SignupSingleton.agreementCheck,
+        SignupSingleton.email,
+        SignupSingleton.isApple,
+        SignupSingleton.isKakao,
+        SignupSingleton.marketing,
+        SignupSingleton.pw,
+        SignupSingleton.signupPurpose) 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,43 +47,33 @@ class SignupcompleteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // /signup API 통신
+        // 통신후 token 저장
+
+        Log.d("API결과","${datas.toString()}")
+        SignupRetro
+            .signup(datas)
+            .enqueue(object : Callback<SigninResponse>{
+                override fun onResponse(
+                    call: Call<SigninResponse>,
+                    response: Response<SigninResponse>
+                ) {
+                    Log.d("API결과","${response.raw()}")
+
+                    Singleton.accessToken = response.body()!!.accessToken
+                    Singleton.refreshToken = response.body()!!.refreshToken
+
+                    binding.btnStart.isEnabled = true
+                }
+
+                override fun onFailure(call: Call<SigninResponse>, t: Throwable) {}
+            })
+
 
         // 시작하기 버튼 클릭 이벤트 처리
-        // -> signup singleton 에 담긴 모든 signup 데이터 패키징
-        // -> /signup API 통신
-        // -> 통신후 token 저장 & MainActivity 로 이동
         binding.btnStart.setOnClickListener {
-
-            val datas = SignupData(SignupSingleton.agreementCheck,
-                SignupSingleton.email,
-                false, false,
-                SignupSingleton.marketing,
-                SignupSingleton.pw,
-                SignupSingleton.signupPurpose)
-
-            Log.d("API결과","${datas.toString()}")
-
-            SignupRetro
-                .signup(datas)
-                .enqueue(object : Callback<SigninResponse>{
-                    override fun onResponse(
-                        call: Call<SigninResponse>,
-                        response: Response<SigninResponse>
-                    ) {
-                        Log.d("API결과","${response.body()}")
-
-                        Singleton.accessToken = response.body()!!.accessToken
-                        Singleton.refreshToken = response.body()!!.refreshToken
-
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
-
-                    }
-
-                    override fun onFailure(call: Call<SigninResponse>, t: Throwable) {}
-                })
-
-
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

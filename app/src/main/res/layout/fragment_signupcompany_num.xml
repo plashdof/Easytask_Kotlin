@@ -28,56 +28,25 @@
             android:fontFamily="@font/ibmmedium"
             android:layout_marginTop="35dp"
             android:textSize="22sp"
-            android:text="가입할 때 사용한 이름과\n핸드폰 번호를 적어주세요"/>
+            android:text="법인등록번호를 적고\n인증해주세요"/>
 
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/shape_login_et"
-                android:fontFamily="@font/ibmmedium"
-                android:hint="이름"
-                android:inputType="textVisiblePassword"
-                android:paddingLeft="16dp"
-                android:textColor="@color/easy_dark"
-                android:textColorHint="@color/easy_login_light"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/btn_erase_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login_id_icon"
-                android:scaleType="fitCenter"
-                android:visibility="invisible"
-                android:layout_marginRight="20dp"
-                android:background="@android:color/transparent"
-                android:layout_gravity="end|center_vertical"/>
-
-        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="15dp">
 
             <EditText
-                android:id="@+id/et_phone1"
+                android:id="@+id/et_firstnum"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="56dp"
                 android:background="@drawable/shape_login_et"
                 android:fontFamily="@font/ibmmedium"
-                android:hint="010"
-                android:maxLength="3"
-                android:inputType="textVisiblePassword"
+                android:hint="123456"
+                android:inputType="number"
+                android:maxLength="6"
                 android:textColorHint="@color/easy_login_light"
                 android:gravity="center"
                 android:textColor="@color/easy_dark"
@@ -89,40 +58,19 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:textSize="15sp"
+                android:textColor="@color/easy_login_light"
                 android:text="ㅡ"/>
 
             <EditText
-                android:id="@+id/et_phone2"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="56dp"
-                android:background="@drawable/shape_login_et"
-                android:fontFamily="@font/ibmmedium"
-                android:inputType="textVisiblePassword"
-                android:hint="1234"
-                android:maxLength="4"
-                android:textColorHint="@color/easy_login_light"
-                android:gravity="center"
-                android:textColor="@color/easy_dark"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:text="ㅡ"/>
-
-            <EditText
-                android:id="@+id/et_phone3"
+                android:id="@+id/et_secondnum"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_weight="1"
-                android:inputType="textVisiblePassword"
+                android:inputType="number"
                 android:background="@drawable/shape_login_et"
                 android:fontFamily="@font/ibmmedium"
-                android:maxLength="4"
-                android:hint="5678"
+                android:hint="1234567"
+                android:maxLength="7"
                 android:textColorHint="@color/easy_login_light"
                 android:gravity="center"
                 android:textColor="@color/easy_dark"
@@ -137,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/easy_red"
-            android:text="해당 유저를 찾을 수 없습니다."
+            android:text="인증에 실패했어요. 법인등록번호를 다시 확인해 주세요."
             android:layout_marginTop="5dp"
             android:fontFamily="@font/ibmmedium"
             android:visibility="invisible"/>
@@ -145,7 +93,7 @@
     </LinearLayout>
 
     <android.widget.Button
-        android:id="@+id/btn_find"
+        android:id="@+id/btn_check"
         android:layout_width="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -153,7 +101,7 @@
         android:background="@drawable/shape_login_btn"
         android:fontFamily="@font/ibmmedium"
         android:enabled="false"
-        android:text="이메일 찾기"
+        android:text="인증하기"
         android:textColor="@color/easy_login_light"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"

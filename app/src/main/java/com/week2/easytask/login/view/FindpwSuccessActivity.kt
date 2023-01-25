@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.week2.easytask.CustomToast.showCustomToast
-import com.week2.easytask.R
+import com.week2.easytask.CustomToast.showFindpwToast
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.ActivityFindpwsuccessBinding
 import com.week2.easytask.login.model.SendEmailData
@@ -59,7 +58,7 @@ class FindpwSuccessActivity : AppCompatActivity() {
                     ) {
                         if(response.code() == 200){
                             // 재전송 성공시 Custom TOast message
-                            Toast(this@FindpwSuccessActivity).showCustomToast ("이메일을 다시 발송했어요.", this@FindpwSuccessActivity)
+                            Toast(this@FindpwSuccessActivity).showFindpwToast ("이메일을 다시 발송했어요.", this@FindpwSuccessActivity)
                         }else{
 
                         }

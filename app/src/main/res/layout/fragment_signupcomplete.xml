@@ -71,6 +71,7 @@
         android:background="@drawable/shape_login_btn_on"
         android:fontFamily="@font/ibmmedium"
         android:text="시작하기"
+        android:enabled="false"
         android:textColor="@color/white"
         android:layout_marginBottom="16dp"
         android:textSize="16sp" />
