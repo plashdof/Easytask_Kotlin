@@ -63,6 +63,7 @@ class SignupcompleteFragment : Fragment() {
                     if(response.code() == 200){
                         Singleton.accessToken = response.body()!!.accessToken
                         Singleton.refreshToken = response.body()!!.refreshToken
+                        Singleton.id = response.body()!!.id
 
                         binding.btnStart.isEnabled = true
                     }else{

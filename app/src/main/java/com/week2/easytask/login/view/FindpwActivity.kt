@@ -108,7 +108,7 @@ class FindpwActivity : AppCompatActivity() {
                         call: Call<FindpwResponse>,
                         response: Response<FindpwResponse>
                     ) {
-                        Log.d("API결과","${response.body()?.content}")
+                        Log.d("API결과","${response.body()}")
 
                         // 일치하는 계정이 없을경우
                         if(response.body()?.content!!.isEmpty()){
@@ -125,6 +125,7 @@ class FindpwActivity : AppCompatActivity() {
                                         call: Call<SendEmailData>,
                                         response: Response<SendEmailData>
                                     ) {
+                                        Log.d("API결과","${response.raw()}")
                                         if(response.code() == 200){
                                             val intent = Intent(this@FindpwActivity, FindpwSuccessActivity::class.java )
                                                 .putExtra("email",email)

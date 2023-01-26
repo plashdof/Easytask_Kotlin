@@ -197,9 +197,16 @@ class LoginActivity:AppCompatActivity() {
 
                         if(response.code() == 200){
                             Log.d("API결과","${response.body()}")
+                            Singleton.accessToken = response.body()!!.accessToken
+                            Singleton.refreshToken = response.body()!!.refreshToken
+                            Singleton.id = response.body()!!.id
+
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
 
                         }else if(response.code() == 401){
-                            // API 통신 후  
+                            // API 통신 후
                             // 버튼색. 버튼글자색 변경
                             // edittext focus 해제
                             // 경고문구 visible 처리
@@ -324,6 +331,10 @@ class LoginActivity:AppCompatActivity() {
 
                                             if(response.code() == 200){
                                                 Log.d("API결과","${response.body()}")
+                                                Singleton.accessToken = response.body()!!.accessToken
+                                                Singleton.refreshToken = response.body()!!.refreshToken
+                                                Singleton.id = response.body()!!.id
+
                                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                                 finish()
