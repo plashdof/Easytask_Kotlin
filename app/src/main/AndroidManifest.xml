@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -29,6 +30,19 @@
         <activity android:name=".login.view.LoginActivity"
             android:exported="true"/>
 
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao7fbc7eaf88afabd9aed86047058df17f" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".login.view.FindidActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
@@ -48,6 +62,10 @@
             android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name=".signup.view.signupcompany.SignupCompanyActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".signup.view.SignupkakaoActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
 

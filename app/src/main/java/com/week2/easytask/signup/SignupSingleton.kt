@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 object SignupSingleton {
 
-    var company = false
+    var state = "normal"
 
     var companyName = ""
     var companyNum = ""

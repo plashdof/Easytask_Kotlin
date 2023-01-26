@@ -60,10 +60,15 @@ class SignupcompleteFragment : Fragment() {
                 ) {
                     Log.d("API결과","${response.raw()}")
 
-                    Singleton.accessToken = response.body()!!.accessToken
-                    Singleton.refreshToken = response.body()!!.refreshToken
+                    if(response.code() == 200){
+                        Singleton.accessToken = response.body()!!.accessToken
+                        Singleton.refreshToken = response.body()!!.refreshToken
 
-                    binding.btnStart.isEnabled = true
+                        binding.btnStart.isEnabled = true
+                    }else{
+                        Log.d("API결과", "error")
+                    }
+
                 }
 
                 override fun onFailure(call: Call<SigninResponse>, t: Throwable) {}

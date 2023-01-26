@@ -14,15 +14,24 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.AuthErrorCause
+import com.kakao.sdk.user.UserApiClient
+import com.week2.easytask.MainActivity
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
+import com.week2.easytask.Singleton
 import com.week2.easytask.databinding.ActivityLoginBinding
+import com.week2.easytask.login.model.CheckKakaoResponse
 import com.week2.easytask.login.model.SigninResponse
 import com.week2.easytask.login.model.SigninData
+import com.week2.easytask.login.network.CheckKakaoAPI
 import com.week2.easytask.login.network.SigninAPI
-import com.week2.easytask.signup.view.BottomSheetSignup
+import com.week2.easytask.signup.SignupSingleton
 import com.week2.easytask.signup.view.SignupActivity
+import com.week2.easytask.signup.view.SignupkakaoActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +40,9 @@ class LoginActivity:AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
     private val SigninRetro = Retrofit.getInstance().create(SigninAPI::class.java)
+    private val CheckKakaoRetro = Retrofit.getInstance().create(CheckKakaoAPI::class.java)
+
+    private var kakaoid = ""
 
     private var storestate = false
     private var pwstate = false
@@ -48,6 +60,7 @@ class LoginActivity:AppCompatActivity() {
             Id = intent.getStringExtra("email").toString()
             binding.etId.setText(Id)
         }
+
 
         
         // Id/Pw 입력 edittext focus 이벤트 처리
@@ -221,6 +234,140 @@ class LoginActivity:AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        // 로그인 정보 확인
+//        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+//            if (error != null) {
+//                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+//            }
+//            else if (tokenInfo != null) {
+//                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(this, MainActivity::class.java)
+//                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//                finish()
+//            }
+//        }
+
+
+
+        // 카카오로그인 관련 에러 예외처리
+
+        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            if (error != null) {
+                when {
+                    error.toString() == AuthErrorCause.AccessDenied.toString() -> {
+                        Toast.makeText(this, "접근이 거부 됨(동의 취소)", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidClient.toString() -> {
+                        Toast.makeText(this, "유효하지 않은 앱", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidGrant.toString() -> {
+                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidRequest.toString() -> {
+                        Toast.makeText(this, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.InvalidScope.toString() -> {
+                        Toast.makeText(this, "유효하지 않은 scope ID", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.Misconfigured.toString() -> {
+                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.ServerError.toString() -> {
+                        Toast.makeText(this, "서버 내부 에러", Toast.LENGTH_SHORT).show()
+                    }
+                    error.toString() == AuthErrorCause.Unauthorized.toString() -> {
+                        Toast.makeText(this, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> { // Unknown
+                        Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else if (token != null) {
+
+                // kakaotalk 에 연결 성공한뒤,
+                
+                UserApiClient.instance.me { user, error ->
+
+                    Log.d("API결과","${user.toString()}")
+
+                    // kakao userid 받아오기
+                    kakaoid = user?.id.toString()
+                    // 회원가입으로 이동시 필요한 email 정보 싱글톤에 저장
+                    SignupSingleton.email = user?.kakaoAccount?.email.toString()
+
+                }
+
+                // kakao userid 로 easytask 엔드포인트 연결
+                // -> 존재하는 회원의 kakao id 면 LoginAPI 호출
+                // -> 존재하지 않는 회원의 kakao id 면 SignupKakaoActivity로
+                CheckKakaoRetro
+                    .checkkakao(kakaoid)
+                    .enqueue(object : Callback<CheckKakaoResponse>{
+                        override fun onResponse(
+                            call: Call<CheckKakaoResponse>,
+                            response: Response<CheckKakaoResponse>
+                        ) {
+                            Log.d("API결과","${response.raw()}")
+                            if(response.code() == 200){
+                                val datas = SigninData(SignupSingleton.email,"",true)
+                                
+                                SigninRetro
+                                    .signin(datas)
+                                    .enqueue(object : Callback<SigninResponse>{
+                                        override fun onResponse(
+                                            call: Call<SigninResponse>,
+                                            response: Response<SigninResponse>
+                                        ) {
+                                            Log.d("API결과","${response.code()}")
+
+                                            if(response.code() == 200){
+                                                Log.d("API결과","${response.body()}")
+                                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                                finish()
+
+                                            }else if(response.code() == 401){
+                                                // API 통신 후
+                                                // 버튼색. 버튼글자색 변경
+                                                // edittext focus 해제
+                                                // 경고문구 visible 처리
+
+                                                binding.tvLoginFail.visibility = View.VISIBLE
+                                                binding.btnLogin.setBackgroundResource(R.drawable.shape_login_btn)
+                                                binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
+                                            }
+
+                                        }
+                                        override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
+                                            Log.d("API결과","${t.message}")
+                                        }
+                                    })
+                            }else{
+                                val intent = Intent(this@LoginActivity, SignupkakaoActivity::class.java)
+                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<CheckKakaoResponse>, t: Throwable) {}
+                    })
+
+
+            }
+        }
+        
+        
+        // kakao 로그인 하기
+        binding.btnKakaoLogin.setOnClickListener {
+            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            }else{
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            }
+        }
+
     }
 
     // 다른곳 클릭시 키보드 내리기 & edit text focus 해제
@@ -239,5 +386,28 @@ class LoginActivity:AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    fun kakaoLogout() {
+        // 로그아웃
+        UserApiClient.instance.logout { error ->
+            if (error != null) {
+                Log.e("Hello", "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+            } else {
+                Log.i("Hello", "로그아웃 성공. SDK에서 토큰 삭제됨")
+            }
+        }
+    }
+
+    fun kakaoUnlink() {
+        // 연결 끊기
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Log.e("Hello", "연결 끊기 실패", error)
+            } else {
+                Log.i("Hello", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+            }
+        }
+        finish()
     }
 }

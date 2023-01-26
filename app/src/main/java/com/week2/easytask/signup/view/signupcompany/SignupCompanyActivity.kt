@@ -8,16 +8,16 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.week2.easytask.R
-import com.week2.easytask.databinding.ActivitySingupcompanyBinding
+import com.week2.easytask.databinding.ActivitySignupcompanyBinding
 import com.week2.easytask.signup.SignupSingleton
 
 class SignupCompanyActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySingupcompanyBinding
+    private lateinit var binding : ActivitySignupcompanyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySingupcompanyBinding.inflate(layoutInflater)
+        binding = ActivitySignupcompanyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // name frag 부터 시작

@@ -44,13 +44,14 @@ class SignupemailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // SignupSingleton 일반모드로
+        SignupSingleton.state = "normal"
+
+
         binding.btnBack.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
         }
-
-        // SignupSingleton 일반모드로
-        SignupSingleton.company = false
 
 
         // back btn 클릭 이벤트 처리
