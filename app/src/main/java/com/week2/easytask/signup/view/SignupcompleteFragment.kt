@@ -68,7 +68,7 @@ class SignupcompleteFragment : Fragment() {
                         binding.btnStart.isEnabled = true
                     }else{
                         Log.d("API결과", "error")
-                    }
+                    }    
 
                 }
 
