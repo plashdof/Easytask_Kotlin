@@ -40,7 +40,7 @@ class SignupCompanynameFragment : Fragment() {
         }
 
         // SignupSingleton 회사모드로
-        SignupSingleton.company = true
+        SignupSingleton.state = "company"
 
 
         // back btn 클릭 이벤트 처리

@@ -220,13 +220,13 @@ class SignuppwFragment : Fragment() {
             
             
             // 기업모드일 경우
-            if(SignupSingleton.company){
+            if(SignupSingleton.state == "company"){
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup_company,SignuptypeFragment())
                     .addToBackStack(null)
                     .commit()
-            }else{
+            }else if(SignupSingleton.state == "normal"){
                 
                 // 일반모드일 경우
                 parentFragmentManager

@@ -195,17 +195,33 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
             }
 
             // 기업모드일 경우
-            if(SignupSingleton.company){
+            if(SignupSingleton.state == "company"){
+
+                SignupSingleton.isKakao = false
+
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup_company,SignupcompleteFragment())
                     .addToBackStack(null)
                     .commit()
-            }else{
+            }else if(SignupSingleton.state == "normal"){
                 // 일반모드일 경우
+
+                SignupSingleton.isKakao = false
+
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.frag_signup,SignupcompleteFragment())
+                    .addToBackStack(null)
+                    .commit()
+            }else{
+                // kakao 모드일 경우
+
+                SignupSingleton.isKakao = true
+
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frag_signup_kakao,SignupcompleteFragment())
                     .addToBackStack(null)
                     .commit()
             }
