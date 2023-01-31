@@ -130,19 +130,27 @@ class SignupCompanynumFragment : Fragment() {
 
                         SignupSingleton.companyNum = firstnum + secondnum
 
-                        if(response.body()!!.exists){
-                            SignupSingleton.companyNum = firstnum + secondnum
+                        if(response.code() == 200){
+                            if(response.body()!!.exists){
+                                SignupSingleton.companyNum = firstnum + secondnum
 
-                            Toast(requireContext()).showSignupCompanyToast ("이메일을 다시 발송했어요.", requireActivity())
-                            parentFragmentManager.beginTransaction()
-                                .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
-                                .addToBackStack(null)
-                                .commit()
+                                Toast(requireContext()).showSignupCompanyToast ("법인등록번호 인증에 성공했어요.", requireActivity())
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
+                                    .addToBackStack(null)
+                                    .commit()
+                            }else{
+                                // 존재하지 않는 법인번호라면 경고문구 띄우기
+
+                                binding.tvWarn.visibility = View.VISIBLE
+                            }
                         }else{
                             // 존재하지 않는 법인번호라면 경고문구 띄우기
 
                             binding.tvWarn.visibility = View.VISIBLE
                         }
+
+
 
                     }
 

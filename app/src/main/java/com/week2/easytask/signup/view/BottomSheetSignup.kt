@@ -2,6 +2,7 @@ package com.week2.easytask.signup.view
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -186,6 +187,7 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
         // 다음버튼 클릭이벤트 처리
 
         binding.btnNext.setOnClickListener {
+
             SignupSingleton.agreementCheck = "T"
 
             if(terms3state){
