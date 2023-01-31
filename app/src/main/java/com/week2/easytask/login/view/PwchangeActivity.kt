@@ -10,24 +10,35 @@ import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.week2.easytask.R
+import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.ActivityPwchangeBinding
+import com.week2.easytask.login.model.PwchangeData
+import com.week2.easytask.login.network.PwchangeAPI
 import com.week2.easytask.signup.SignupSingleton
 import com.week2.easytask.signup.view.SignuptypeFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PwchangeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPwchangeBinding
+
+    private val pwchangeRetro = Retrofit.getInstance().create(PwchangeAPI::class.java)
 
     private var pwstate = false
     private var pwCheckstate = false
 
     private var Pw = ""
     private var PwCheck = ""
+
+    private var emailAuth = ""
 
     private var numcheck = false
     private var specialcheck =false
@@ -50,9 +61,15 @@ class PwchangeActivity : AppCompatActivity() {
 
         binding.etPw.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
+                binding.layoutCheckpw.visibility = View.VISIBLE
+                binding.tvWarn.visibility = View.GONE
                 view.setBackgroundResource(R.drawable.shape_login_et_focus)
             } else {
                 view.setBackgroundResource(R.drawable.shape_login_et)
+
+                // todo 포커스 해제시 API를 통해서, 기존비번과 같은지 판별후 경고메세지 띄우기. (API 확인불가)
+
+
             }
         }
 
@@ -219,6 +236,23 @@ class PwchangeActivity : AppCompatActivity() {
             }else if(SignupSingleton.state == "normal"){
 
                 // 일반모드일 경우
+
+                val datas = PwchangeData(emailAuth,Pw)
+                pwchangeRetro.pwchange(datas)
+                    .enqueue(object: Callback<PwchangeData>{
+                        override fun onResponse(
+                            call: Call<PwchangeData>,
+                            response: Response<PwchangeData>
+                        ) {
+                            if(response.code() == 200){
+                                val intent = Intent(this@PwchangeActivity, LoginActivity::class.java)
+                                    .putExtra("pwchange","success")
+                                startActivity(intent)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<PwchangeData>, t: Throwable) {}
+                    })
 
             }
 
