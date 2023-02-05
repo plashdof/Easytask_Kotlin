@@ -8,8 +8,9 @@ import retrofit2.http.Query
 
 interface ExistCompanynumAPI {
 
-    @GET("/companies/corporateNumber/{num}/exists")
+    @GET("companies/business-number/{num}/exists")
     fun existcompanynum(
         @Path("num") num : String
     ): Call<ExistCompanynumResponse>
 }
+

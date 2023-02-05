@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.week2.easytask.CustomToast.showpwChangeToast
 import com.week2.easytask.MainActivity
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
@@ -59,6 +60,13 @@ class LoginActivity:AppCompatActivity() {
         if(intent.hasExtra("email")){
             Id = intent.getStringExtra("email").toString()
             binding.etId.setText(Id)
+        }
+
+        // pw 변경 성공후 login page 로 넘어오면, Toast message 띄움
+
+        if(intent.hasExtra("pwchange")){
+            Toast(this)
+                .showpwChangeToast ("비밀번호를 변경했어요.", this)
         }
 
 

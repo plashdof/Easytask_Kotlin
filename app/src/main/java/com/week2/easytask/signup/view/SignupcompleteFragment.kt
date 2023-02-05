@@ -58,7 +58,7 @@ class SignupcompleteFragment : Fragment() {
                     call: Call<SigninResponse>,
                     response: Response<SigninResponse>
                 ) {
-                    Log.d("API결과","${response.raw()}")
+                    Log.d("API결과","${response.body()}")
 
                     if(response.code() == 200){
                         Singleton.accessToken = response.body()!!.accessToken

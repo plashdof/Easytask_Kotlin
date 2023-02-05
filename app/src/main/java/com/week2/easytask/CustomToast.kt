@@ -46,4 +46,24 @@ object CustomToast {
             show()
         }
     }
+
+    fun Toast.showpwChangeToast(message: String, activity: Activity)
+    {
+        val layout = activity.layoutInflater.inflate (
+            R.layout.toast_custom,
+            activity.findViewById(R.id.layoutContainer)
+        )
+
+        // set the text of the TextView of the message
+        val textView = layout.findViewById<TextView>(R.id.tvToast)
+        textView.text = message
+
+        // use the application extension function
+        this.apply {
+            setGravity(Gravity.BOTTOM, 0, 20)
+            duration = Toast.LENGTH_SHORT
+            view = layout
+            show()
+        }
+    }
 }
