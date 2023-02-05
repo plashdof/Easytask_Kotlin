@@ -105,7 +105,7 @@ class SignupemailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 email = binding.etEmail.text.toString()
 
-                if(email.contains("@") && email.contains(".com")){
+                if(email.contains("@") && (email.contains(".com") || email.contains(".net"))){
                     binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
                     binding.btnNext.isEnabled = true
