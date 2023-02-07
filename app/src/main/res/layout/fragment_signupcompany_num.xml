@@ -49,6 +49,7 @@
                 android:maxLength="3"
                 android:textColorHint="@color/easy_login_light"
                 android:gravity="center"
+                android:nextFocusDown="@id/et_secondnum"
                 android:textColor="@color/easy_dark"
                 android:textSize="16sp"/>
 
@@ -71,6 +72,7 @@
                 android:hint="45"
                 android:inputType="number"
                 android:maxLength="2"
+                android:nextFocusDown="@id/et_thirdnum"
                 android:textColorHint="@color/easy_login_light"
                 android:gravity="center"
                 android:textColor="@color/easy_dark"
@@ -94,6 +96,7 @@
                 android:background="@drawable/shape_login_et"
                 android:fontFamily="@font/ibmmedium"
                 android:hint="67890"
+                android:imeOptions="actionDone"
                 android:maxLength="5"
                 android:textColorHint="@color/easy_login_light"
                 android:gravity="center"
@@ -109,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/easy_red"
-            android:text="인증에 실패했어요. 법인등록번호를 다시 확인해 주세요."
+            android:text="법인 사업자만 가입 가능합니다."
             android:layout_marginTop="5dp"
             android:fontFamily="@font/ibmmedium"
             android:visibility="invisible"/>

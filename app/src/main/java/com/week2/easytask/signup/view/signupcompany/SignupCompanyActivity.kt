@@ -24,8 +24,8 @@ class SignupCompanyActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frag_signup_company, SignupCompanynameFragment())
             .commit()
-
     }
+
 
     // 다른곳 클릭시 키보드 내리기 & edit text focus 해제
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {

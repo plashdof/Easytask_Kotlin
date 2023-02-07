@@ -1,5 +1,6 @@
 package com.week2.easytask.signup.view.signupcompany
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,8 +10,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.week2.easytask.App
 import com.week2.easytask.CustomToast.showSignupCompanyToast
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
@@ -29,6 +32,7 @@ class SignupCompanynumFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val ExistCompanynumRetro = Retrofit.getInstance().create(ExistCompanynumAPI::class.java)
+    val inputMethodManager = App.getcontext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
     private var firstnum = ""
     private var secondnum = ""
@@ -87,6 +91,11 @@ class SignupCompanynumFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 firstnum = binding.etFirstnum.text.toString()
 
+                //
+                if(firstnum.length ==3){
+                    binding.etSecondnum.requestFocus()
+                }
+
                 if(firstnum.length == 3 && secondnum.length == 2 && thirdnum.length == 5){
                     binding.btnCheck.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnCheck.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -106,6 +115,10 @@ class SignupCompanynumFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 secondnum = binding.etSecondnum.text.toString()
 
+                if(secondnum.length == 2){
+                    binding.etThirdnum.requestFocus()
+                }
+
                 if(firstnum.length == 3 && secondnum.length == 2 && thirdnum.length == 5){
                     binding.btnCheck.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnCheck.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -124,6 +137,11 @@ class SignupCompanynumFragment : Fragment() {
         binding.etThirdnum.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 thirdnum = binding.etThirdnum.text.toString()
+
+                if(thirdnum.length == 5){
+                    binding.etThirdnum.clearFocus()
+                    inputMethodManager.hideSoftInputFromWindow(binding.etThirdnum.windowToken, 0)
+                }
 
                 if(firstnum.length == 3 && secondnum.length == 2 && thirdnum.length == 5){
                     binding.btnCheck.setBackgroundResource(R.drawable.shape_login_btn_on)
@@ -147,7 +165,7 @@ class SignupCompanynumFragment : Fragment() {
         binding.btnCheck.setOnClickListener {
 
             ExistCompanynumRetro
-                .existcompanynum(firstnum + secondnum)
+                .existcompanynum(firstnum + secondnum + thirdnum)
                 .enqueue(object : Callback<ExistCompanynumResponse>{
                     override fun onResponse(
                         call: Call<ExistCompanynumResponse>,
@@ -161,22 +179,25 @@ class SignupCompanynumFragment : Fragment() {
 
                         if(response.code() == 200){
                             if(response.body()!!.exists){
-                                SignupSingleton.companyNum = firstnum + secondnum
+                                // 이미 가입된 기업회원이면 경고문구 띄우기
+                                binding.tvWarn.visibility = View.VISIBLE
+                                binding.tvWarn.setText("이미 가입된 기업회원입니다")
+                                
+                            }else{
+
+                                SignupSingleton.companyNum = firstnum + secondnum + thirdnum
 
                                 Toast(requireContext()).showSignupCompanyToast ("사업자 등록번호 인증에 성공했어요.", requireActivity())
                                 parentFragmentManager.beginTransaction()
                                     .replace(R.id.frag_signup_company, SignupCompanyemailFragment())
                                     .addToBackStack(null)
                                     .commit()
-                            }else{
-                                // 존재하지 않는 법인번호라면 경고문구 띄우기
-
-                                binding.tvWarn.visibility = View.VISIBLE
                             }
                         }else{
                             // 존재하지 않는 법인번호라면 경고문구 띄우기
 
                             binding.tvWarn.visibility = View.VISIBLE
+                            binding.tvWarn.setText("법인 사업자만 가입 가능합니다")
                         }
 
                     }

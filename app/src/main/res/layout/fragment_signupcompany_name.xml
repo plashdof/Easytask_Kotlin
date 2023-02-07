@@ -30,7 +30,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginRight="16dp"
             android:fontFamily="@font/ibmmedium"
-            android:text="법인으로 등록한한\n회사명을 적어주세요"
+            android:text="법인으로 등록한\n회사명을 적어주세요"
             android:textColor="@color/easy_dark"
             android:textSize="22sp" />
 

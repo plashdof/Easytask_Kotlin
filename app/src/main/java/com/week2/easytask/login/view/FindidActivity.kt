@@ -119,6 +119,10 @@ class FindidActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 phone1 = binding.etPhone1.text.toString()
 
+                if(phone1.length == 3){
+                    binding.etPhone2.requestFocus()
+                }
+
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -138,6 +142,10 @@ class FindidActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 phone2 = binding.etPhone2.text.toString()
 
+                if(phone2.length == 4){
+                    binding.etPhone3.requestFocus()
+                }
+
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)
                     binding.btnFind.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -156,6 +164,10 @@ class FindidActivity : AppCompatActivity() {
         binding.etPhone3.addTextChangedListener(object : TextWatcher{
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 phone3= binding.etPhone3.text.toString()
+
+                if(phone3.length == 4){
+                    binding.etPhone3.clearFocus()
+                }
 
                 if(name.isNotBlank() && phone1 == "010" && phone2.length == 4 && phone3.length == 4){
                     binding.btnFind.setBackgroundResource(R.drawable.shape_login_btn_on)

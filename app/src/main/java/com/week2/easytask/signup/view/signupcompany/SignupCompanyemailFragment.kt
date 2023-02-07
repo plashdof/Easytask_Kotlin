@@ -1,5 +1,6 @@
 package com.week2.easytask.signup.view.signupcompany
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -8,13 +9,14 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import com.week2.easytask.App
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.FragmentSignupcompanyEmailBinding
 import com.week2.easytask.login.view.LoginActivity
 import com.week2.easytask.signup.SignupSingleton
-import com.week2.easytask.signup.network.ExistEmailAPI
 import com.week2.easytask.signup.view.SignuppwFragment
 
 class SignupCompanyemailFragment : Fragment() {
@@ -36,6 +38,9 @@ class SignupCompanyemailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val inputMethodManager = App.getcontext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(binding.etEmail, 0)
 
         binding.btnBack.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
