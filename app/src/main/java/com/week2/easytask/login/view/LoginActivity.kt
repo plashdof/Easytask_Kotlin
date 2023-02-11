@@ -2,6 +2,7 @@ package com.week2.easytask.login.view
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -43,6 +44,8 @@ class LoginActivity:AppCompatActivity() {
     private val SigninRetro = Retrofit.getInstance().create(SigninAPI::class.java)
     private val CheckKakaoRetro = Retrofit.getInstance().create(CheckKakaoAPI::class.java)
 
+    private lateinit var sharedPreferences : SharedPreferences
+
     private var kakaoid = ""
 
     private var storestate = false
@@ -54,6 +57,10 @@ class LoginActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ID저장
+        sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
+        loadID()
 
         // Id 찾기 성공후 login page 로 넘어오면, id 입력된상태로 login page 띄움
 
@@ -169,14 +176,25 @@ class LoginActivity:AppCompatActivity() {
         // 아이콘 변경
 
         binding.btnIdstore.setOnClickListener {
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
             if(storestate){
                 binding.btnIdstore.setImageResource(R.drawable.login_checkoff)
                 storestate = false
+
+                editor.clear()
+                editor.apply()
+
             }else{
                 binding.btnIdstore.setImageResource(R.drawable.login_checkon)
                 storestate = true
+
+                editor.putString("storedID", Id)
+                editor.apply()
             }
         }
+
+
 
         // 로그인버튼 클릭 이벤트처리
         // -> SigninAPI 통신
@@ -428,5 +446,17 @@ class LoginActivity:AppCompatActivity() {
             }
         }
         finish()
+    }
+
+    fun loadID(){
+        val getSharedID = sharedPreferences.getString("storedID", "ERROR")
+
+        if(getSharedID != "ERROR"){
+            binding.etId.setText(getSharedID)
+            Id = getSharedID.toString()
+
+            binding.btnIdstore.setImageResource(R.drawable.login_checkon)
+            storestate = true
+        }
     }
 }
