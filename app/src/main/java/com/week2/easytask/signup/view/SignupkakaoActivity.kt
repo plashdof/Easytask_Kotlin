@@ -15,7 +15,7 @@ class SignupkakaoActivity : AppCompatActivity() {
         binding = ActivitySignupkakaoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        SignupSingleton.state = "kakao"
+        SignupSingleton.state = "kakao"  
 
         // type 선택 frag부터 시작
 
