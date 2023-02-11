@@ -41,7 +41,7 @@ import retrofit2.Response
 class LoginActivity:AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
-    private val SigninRetro = Retrofit.getInstance().create(SigninAPI::class.java)
+    private val SigninRetro = Retrofit.getloginInstance().create(SigninAPI::class.java)
     private val CheckKakaoRetro = Retrofit.getInstance().create(CheckKakaoAPI::class.java)
 
     private lateinit var sharedPreferences : SharedPreferences
@@ -58,8 +58,9 @@ class LoginActivity:AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ID저장
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
+
+        // 아이디 불러오기
         loadID()
 
         // Id 찾기 성공후 login page 로 넘어오면, id 입력된상태로 login page 띄움
@@ -448,6 +449,8 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
+    // 아이디 저장되어있는거 있으면 불러오기
+    
     fun loadID(){
         val getSharedID = sharedPreferences.getString("storedID", "ERROR")
 
