@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.week2.easytask.MainActivity
+import com.week2.easytask.webview.view.MainActivity
 import com.week2.easytask.Singleton
 import com.week2.easytask.Retrofit
 import com.week2.easytask.databinding.FragmentSignupcompleteBinding

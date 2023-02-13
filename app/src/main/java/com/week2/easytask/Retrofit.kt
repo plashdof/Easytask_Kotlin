@@ -7,7 +7,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.CookieManager
-import java.util.concurrent.TimeUnit
 
 object Retrofit {
 
@@ -35,7 +34,6 @@ object Retrofit {
     }
 
     fun getloginInstance() : Retrofit{
-
         if(instance == null) {
             val interceptor = HttpLoggingInterceptor()
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -43,7 +41,6 @@ object Retrofit {
             val client = OkHttpClient.Builder()
                 .cookieJar(JavaNetCookieJar(CookieManager()))
                 .addInterceptor(interceptor)
-                .connectTimeout(20000L, TimeUnit.SECONDS)
                 .build()
 
             instance = Retrofit.Builder()

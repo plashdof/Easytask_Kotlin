@@ -71,7 +71,7 @@
             android:windowSoftInputMode="adjustResize"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".webview.view.MainActivity"
             android:exported="true">
         </activity>
 

@@ -21,7 +21,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.week2.easytask.CustomToast.showpwChangeToast
-import com.week2.easytask.MainActivity
+import com.week2.easytask.webview.view.MainActivity
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.Singleton
