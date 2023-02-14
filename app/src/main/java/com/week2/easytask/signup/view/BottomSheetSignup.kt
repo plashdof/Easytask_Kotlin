@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.week2.easytask.R
+import com.week2.easytask.Singleton
 import com.week2.easytask.databinding.BottomsheetSignupBinding
 import com.week2.easytask.signup.SignupSingleton
 
@@ -175,11 +176,11 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
             if(terms1state && terms2state){
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn_on)
                 binding.btnNext.setTextColor(Color.parseColor("#FFFFFFFF"))
-                binding.btnNext.isClickable = true
+                binding.btnNext.isEnabled = true
             }else{
                 binding.btnNext.setBackgroundResource(R.drawable.shape_login_btn)
                 binding.btnNext.setTextColor(Color.parseColor("#D3D7DC"))
-                binding.btnNext.isClickable = false
+                binding.btnNext.isEnabled = false
             }
         }
 
@@ -195,6 +196,8 @@ class BottomSheetSignup : BottomSheetDialogFragment() {
             }else{
                 SignupSingleton.marketing = "F"
             }
+
+            Log.d("API결과","${SignupSingleton.state}")
 
             // 기업모드일 경우
             if(SignupSingleton.state == "company"){

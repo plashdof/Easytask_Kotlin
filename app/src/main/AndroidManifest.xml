@@ -44,6 +44,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".login.view.PwchangeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="service.easytask.co.kr"
+                    android:scheme="https"
+                    android:pathPrefix="/resetPassword"/>
+
+            </intent-filter>
+        </activity>
+
         <activity android:name=".login.view.FindidActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>

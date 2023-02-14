@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
             settings.useWideViewPort = true
-
         }
 
         binding.webview.loadUrl("http://service.easytask.kr/external-login?userId=${Singleton.id}&token=${Singleton.accessToken}")

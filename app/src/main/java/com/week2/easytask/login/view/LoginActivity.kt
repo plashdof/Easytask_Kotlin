@@ -59,6 +59,8 @@ class LoginActivity:AppCompatActivity() {
         setContentView(binding.root)
 
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
 
         // 아이디 불러오기
         loadID()
@@ -145,6 +147,11 @@ class LoginActivity:AppCompatActivity() {
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
                     binding.btnLogin.isEnabled = false
                 }
+
+                if(storestate){
+                    editor.putString("storedID", Id)
+                    editor.apply()
+                }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {}
@@ -177,13 +184,12 @@ class LoginActivity:AppCompatActivity() {
         // 아이콘 변경
 
         binding.btnIdstore.setOnClickListener {
-            val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
             if(storestate){
                 binding.btnIdstore.setImageResource(R.drawable.login_checkoff)
                 storestate = false
 
-                editor.clear()
+                editor.remove("storeID")
                 editor.apply()
 
             }else{
@@ -227,6 +233,12 @@ class LoginActivity:AppCompatActivity() {
                             Singleton.accessToken = response.body()!!.accessToken
                             Singleton.refreshToken = response.body()!!.refreshToken
                             Singleton.id = response.body()!!.id
+
+                            editor.putString("ID",Singleton.id)
+                            editor.putString("accessToken",Singleton.accessToken)
+                            editor.putString("refreshToken",Singleton.refreshToken)
+                            editor.apply()
+
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -462,4 +474,6 @@ class LoginActivity:AppCompatActivity() {
             storestate = true
         }
     }
+
+
 }
