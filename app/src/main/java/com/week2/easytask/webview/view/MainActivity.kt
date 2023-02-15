@@ -2,6 +2,7 @@ package com.week2.easytask.webview.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.week2.easytask.Retrofit
@@ -27,8 +28,11 @@ class MainActivity : AppCompatActivity() {
             settings.useWideViewPort = true
         }
 
+        Log.d("API결과", "${Singleton.id} ${Singleton.accessToken}")
+
         binding.webview.loadUrl("http://service.easytask.kr/external-login?userId=${Singleton.id}&token=${Singleton.accessToken}")
 
+        binding.webview.addJavascriptInterface(AndroidJSInterface, "isEasyTaskInWebView" )
     }
 
     override fun onBackPressed() {
