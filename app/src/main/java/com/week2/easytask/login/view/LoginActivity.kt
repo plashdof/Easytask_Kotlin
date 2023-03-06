@@ -21,7 +21,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.week2.easytask.CustomToast.showpwChangeToast
-import com.week2.easytask.MainActivity
+import com.week2.easytask.webview.view.MainActivity
 import com.week2.easytask.R
 import com.week2.easytask.Retrofit
 import com.week2.easytask.Singleton
@@ -41,7 +41,7 @@ import retrofit2.Response
 class LoginActivity:AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
-    private val SigninRetro = Retrofit.getInstance().create(SigninAPI::class.java)
+    private val SigninRetro = Retrofit.getloginInstance().create(SigninAPI::class.java)
     private val CheckKakaoRetro = Retrofit.getInstance().create(CheckKakaoAPI::class.java)
 
     private lateinit var sharedPreferences : SharedPreferences
@@ -58,8 +58,11 @@ class LoginActivity:AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ID저장
         sharedPreferences = getSharedPreferences("test", MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+
+        // 아이디 불러오기
         loadID()
 
         // Id 찾기 성공후 login page 로 넘어오면, id 입력된상태로 login page 띄움
@@ -144,6 +147,11 @@ class LoginActivity:AppCompatActivity() {
                     binding.btnLogin.setTextColor(Color.parseColor("#D3D7DC"))
                     binding.btnLogin.isEnabled = false
                 }
+
+                if(storestate){
+                    editor.putString("storedID", Id)
+                    editor.apply()
+                }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {}
@@ -176,13 +184,12 @@ class LoginActivity:AppCompatActivity() {
         // 아이콘 변경
 
         binding.btnIdstore.setOnClickListener {
-            val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
             if(storestate){
                 binding.btnIdstore.setImageResource(R.drawable.login_checkoff)
                 storestate = false
 
-                editor.clear()
+                editor.remove("storeID")
                 editor.apply()
 
             }else{
@@ -226,6 +233,12 @@ class LoginActivity:AppCompatActivity() {
                             Singleton.accessToken = response.body()!!.accessToken
                             Singleton.refreshToken = response.body()!!.refreshToken
                             Singleton.id = response.body()!!.id
+
+                            editor.putString("ID",Singleton.id)
+                            editor.putString("accessToken",Singleton.accessToken)
+                            editor.putString("refreshToken",Singleton.refreshToken)
+                            editor.apply()
+
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -448,6 +461,8 @@ class LoginActivity:AppCompatActivity() {
         finish()
     }
 
+    // 아이디 저장되어있는거 있으면 불러오기
+    
     fun loadID(){
         val getSharedID = sharedPreferences.getString("storedID", "ERROR")
 
@@ -459,4 +474,6 @@ class LoginActivity:AppCompatActivity() {
             storestate = true
         }
     }
+
+
 }
