@@ -5,11 +5,18 @@ import android.content.Context
 import com.kakao.sdk.common.KakaoSdk
 
 class App : Application() {
-
+    //  mergeeeeddd
     init{
         instance=this
     }
 
+
+
+
+    
+
+
+    //  mergeeeeddd
 
     companion object{
         private var instance : App? = null
@@ -19,7 +26,7 @@ class App : Application() {
             return instance!!.applicationContext
         }
     }
-
+    //  mergeeeeddd
     override fun onCreate() {
         super.onCreate()
 
